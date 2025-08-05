@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: write  # Needed to push changes back to repo
+  contents: write
 
 jobs:
   publish:
@@ -16,26 +16,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Needed for npm version to work properly
+          fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: '20'  # Updated to a current LTS version
-          registry-url: 'https://registry.npmjs.org/'
-
-      - name: Install dependencies
-        run: npm install
+          bun-version: latest
 
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit updated package-lock.json if needed
-        run: |
-          git add package-lock.json
-          git diff --cached --quiet || git commit -m "chore: update package-lock.json"
+      - name: Install dependencies
+        run: bun install
 
       - name: Bump version
         run: |
@@ -43,7 +37,7 @@ jobs:
           git push --follow-tags
 
       - name: Build TypeScript
-        run: npm run build
+        run: bun run build
 
       - name: Publish to npm
         run: npm publish
