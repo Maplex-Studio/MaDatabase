@@ -20,6 +20,8 @@ import type {
 import path from "path";
 
 
+export { DataTypes };
+
 export interface DatabaseOptions {
   dialect?: Dialect;
   storage?: string;
