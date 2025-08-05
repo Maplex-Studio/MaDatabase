@@ -1,0 +1,7 @@
+src
+types
+.github
+*.ts
+*.map
+*.json
+*.md
