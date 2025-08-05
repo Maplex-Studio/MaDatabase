@@ -1,6 +1,6 @@
 {
   "name": "@maplex-studio/madatabase",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "A database management library using Sequelize.",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
