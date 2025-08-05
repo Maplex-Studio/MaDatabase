@@ -18,6 +18,7 @@ import type {
 } from "sequelize";
 
 import path from "path";
+import fs from "fs";
 
 
 export { DataTypes };
@@ -43,6 +44,14 @@ export class Database {
 
     if (options.logging === undefined) {
       defaultOptions.logging = false;
+    }
+
+    // Ensure the directory exists for SQLite database file
+    if (defaultOptions.storage) {
+      const dbDir = path.dirname(path.resolve(defaultOptions.storage));
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
     }
 
     this.sequelize = new Sequelize({
