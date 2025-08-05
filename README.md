@@ -542,9 +542,6 @@ try {
 5. **Index frequently searched fields**: Add indexes for better performance
 6. **Validate input**: Always validate data before inserting
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
