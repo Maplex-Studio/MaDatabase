@@ -17,7 +17,7 @@ MaDatabase is a TypeScript library that provides a simple and efficient way to m
 To install MaDatabase, you can use npm:
 
 ```bash
-npm install MaDatabase
+npm install @maplex-studio/madatabase
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ npm install MaDatabase
 Here is a basic example of how to use MaDatabase:
 
 ```typescript
-import { Database } from 'MaDatabase';
+import { Database } from '@maplex-studio/madatabase';
 
 const db = new Database({
   dialect: 'sqlite',
