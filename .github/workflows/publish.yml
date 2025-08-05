@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20'  # Updated to a current LTS version
           registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
@@ -31,6 +31,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit updated package-lock.json if needed
+        run: |
+          git add package-lock.json
+          git diff --cached --quiet || git commit -m "chore: update package-lock.json"
 
       - name: Bump version
         run: |
