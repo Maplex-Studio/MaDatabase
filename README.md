@@ -1,4 +1,4 @@
-# MaDatabase
+# Maplex Database
 
 A simple, powerful wrapper around Sequelize that makes database operations intuitive and straightforward. Perfect for rapid prototyping and small to medium applications.
 
@@ -14,13 +14,13 @@ A simple, powerful wrapper around Sequelize that makes database operations intui
 ## Installation
 
 ```bash
-npm install @maplex-studio/madatabase sequelize sqlite3 path
+npm install maplex-database sequelize sqlite3 path
 ```
 
 ## Quick Start
 
 ```javascript
-import { Database, DataTypes } from "@maplex-studio/madatabase";
+import { Database, DataTypes } from "maplex-database";
 
 async function main() {
   // Create database instance
