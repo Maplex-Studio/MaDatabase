@@ -20,7 +20,7 @@ A lightweight and intuitive wrapper around Sequelize that simplifies database se
 ## 📦 Installation
 
 ```bash
-npm install maplex-database sequelize sqlite3
+npm install @maplex-lib/database sequelize sqlite3
 ```
 
 ---
@@ -28,7 +28,7 @@ npm install maplex-database sequelize sqlite3
 ## 🚀 Getting Started
 
 ```ts
-import { Database, DataTypes } from "maplex-database";
+import { Database, DataTypes } from "@maplex-lib/database";
 
 async function main() {
   const db = new Database();
