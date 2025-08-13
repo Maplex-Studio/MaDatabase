@@ -20,11 +20,16 @@ import type {
 import path from "path";
 import fs from "fs";
 
-
 export { DataTypes };
 
 export interface DatabaseOptions {
+  url?: string;           
   dialect?: Dialect;
+  host?: string;
+  port?: number;
+  username?: string;
+  password?: string;
+  database?: string;
   storage?: string;
   logging?: boolean;
 }
@@ -46,19 +51,36 @@ export class Database {
       defaultOptions.logging = false;
     }
 
-    // Ensure the directory exists for SQLite database file
-    if (defaultOptions.storage) {
+    // Ensure SQLite directory exists
+    if (
+      defaultOptions.dialect === "sqlite" &&
+      defaultOptions.storage
+    ) {
       const dbDir = path.dirname(path.resolve(defaultOptions.storage));
       if (!fs.existsSync(dbDir)) {
         fs.mkdirSync(dbDir, { recursive: true });
       }
     }
 
-    this.sequelize = new Sequelize({
-      dialect: defaultOptions.dialect,
-      storage: defaultOptions.storage,
-      logging: defaultOptions.logging,
-    });
+    // Create Sequelize instance from URL or from config object
+    if (defaultOptions.url) {
+      // Example: mariadb://user:pass@host:3306/dbname
+      this.sequelize = new Sequelize(defaultOptions.url, {
+        logging: defaultOptions.logging,
+      });
+    } else {
+      this.sequelize = new Sequelize({
+        dialect: defaultOptions.dialect,
+        host: defaultOptions.host,
+        port: defaultOptions.port,
+        username: defaultOptions.username,
+        password: defaultOptions.password,
+        database: defaultOptions.database,
+        storage: defaultOptions.storage,
+        logging: defaultOptions.logging,
+      });
+    }
+
     this.models = {};
     this.isConnected = false;
   }
